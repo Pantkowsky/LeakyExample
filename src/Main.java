@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * Example memory leaks demonstration done for the course of
  * Automated Software Analysis held at IT University of Copenhagen.
@@ -31,6 +33,9 @@ public class Main {
      */
     private static void benchmark(int code){
         switch (code){
+            case 0:
+                DummyButton button = new DummyButton();
+                button.addMouseListener(new LeakyListener());
             case 1:
                 for(int i = 0; i < 10000; i++){
                     LeakyObserver leakyObserver = new LeakyObserver();
@@ -54,6 +59,8 @@ public class Main {
                     LeakyOuterClass.LeakyInnerClass leakyInnerClass = LeakyOuterClass.LeakyInnerClass.getLeakingInnerClass();
                     System.out.println(leakyInnerClass.toString());
                 }
+                break;
+            case 5:
                 break;
         }
     }
