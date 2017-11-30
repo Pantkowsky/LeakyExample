@@ -13,6 +13,7 @@ public class Main {
      * @param args command-line argument
      */
     public static void main(String[] args) {
+        benchmark(0);
         benchmark(1);
         benchmark(2);
         benchmark(3);
@@ -37,7 +38,7 @@ public class Main {
                 DummyButton button = new DummyButton();
                 button.addMouseListener(new LeakyListener());
             case 1:
-                for(int i = 0; i < 10000; i++){
+                for(int i = 0; i < 100; i++){
                     LeakyObserver leakyObserver = new LeakyObserver();
                     leakyObserver.leak();
                 }
