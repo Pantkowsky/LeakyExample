@@ -43,7 +43,8 @@ public class LeakyObserver {
     }
 
     /**
-     * Unsubscribes the observable cleaning up the leak
+     * Leak can be avoided by calling .unsubscribe() on the {@link Observable}
+     * whenever there is no more data stream to observe.
      */
     private void clearLeak(){
         subscription.unsubscribe();

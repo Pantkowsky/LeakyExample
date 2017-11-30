@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringReader;
 
 public class LeakyBufferedReader {
+    private BufferedReader reader;
     private String longString;
 
     /**
@@ -25,13 +26,27 @@ public class LeakyBufferedReader {
      */
     void leak(){
         try{
-            BufferedReader reader = new BufferedReader(new StringReader(longString));
+            reader = new BufferedReader(new StringReader(longString));
             int line = 0;
             for (String x = reader.readLine(); x != null; x = reader.readLine())
             {
                 if(line % 2 == 0) System.out.println("The string is: ".concat(x));
                 line++;
             }
+        }catch(IOException io){
+            io.printStackTrace();
+        }
+    }
+
+    /**
+     * To avoid creating the memory leak when working with IO operations, such as
+     * with {@link BufferedReader}, after finishing executing the operation the object
+     * was tasked with, the reader needs to be closed. It can be done by adding a
+     * FINALLY clause after try-catch block and calling .close().
+     */
+    void fixLeak(){
+        try{
+            reader.close();
         }catch(IOException io){
             io.printStackTrace();
         }
