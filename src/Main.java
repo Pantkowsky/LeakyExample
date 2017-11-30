@@ -18,7 +18,9 @@ public class Main {
         benchmark(2);
         benchmark(3);
         benchmark(4);
+        benchmark(5);
 
+        //simulating ongoing cycle of the program
         Thread thread = Thread.currentThread();
         try{
             thread.sleep(1000000);
@@ -62,6 +64,9 @@ public class Main {
                 }
                 break;
             case 5:
+                LeakyThread thread = new LeakyThread();
+                thread.getThreadName();
+//                thread.fixLeak(); <-- call to thread.start() to fix the leak
                 break;
         }
     }
