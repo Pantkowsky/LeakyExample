@@ -14,6 +14,14 @@ public class Main {
         benchmark(1);
         benchmark(2);
         benchmark(3);
+        benchmark(4);
+
+        Thread thread = Thread.currentThread();
+        try{
+            thread.sleep(1000000);
+        }catch (InterruptedException ie){
+            ie.printStackTrace();
+        }
     }
 
     /**
@@ -24,7 +32,7 @@ public class Main {
     private static void benchmark(int code){
         switch (code){
             case 1:
-                for(int i = 0; i < 100; i++){
+                for(int i = 0; i < 10000; i++){
                     LeakyObserver leakyObserver = new LeakyObserver();
                     leakyObserver.leak();
                 }
@@ -41,6 +49,11 @@ public class Main {
                 leakyBufferedReader.leak();
                 break;
             case 4:
+                for (int i = 0; i < 10000; i++) {
+                    LeakyOuterClass parentClass = new LeakyOuterClass();
+                    LeakyOuterClass.LeakyInnerClass leakyInnerClass = LeakyOuterClass.LeakyInnerClass.getLeakingInnerClass();
+                    System.out.println(leakyInnerClass.toString());
+                }
                 break;
         }
     }
