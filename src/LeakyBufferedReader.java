@@ -22,7 +22,10 @@ public class LeakyBufferedReader {
 
     /**
      * Creates the leak by opening the {@link BufferedReader},
-     * but forgetting to close it after the job is done.
+     * but forgetting to close it after the job is done. This however
+     * has been fixed in Java 8, where if the stream is not closed explicitly
+     * by the developer, it will be closed automatically after try-catch
+     * block gets executed.
      */
     void leak(){
         try{
