@@ -1,6 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Two examples of how memory leaks can be caused
+ * when working with custom HashMaps
+ */
 public class LeakyHashMap {
 
     /**
