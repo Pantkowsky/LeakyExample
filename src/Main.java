@@ -39,6 +39,7 @@ public class Main {
             case 0:
                 DummyButton button = new DummyButton();
                 button.addMouseListener(new LeakyListener());
+                break;
             case 1:
                 for(int i = 0; i < 100; i++){
                     LeakyObserver leakyObserver = new LeakyObserver();
