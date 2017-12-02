@@ -19,6 +19,8 @@ public class Main {
         benchmark(3);
         benchmark(4);
         benchmark(5);
+        benchmark(6);
+        benchmark(7);
 
         //simulating ongoing cycle of the program
         Thread thread = Thread.currentThread();
@@ -72,6 +74,14 @@ public class Main {
             case 6:
                 AutoboxingLeak leak = new AutoboxingLeak();
                 leak.show();
+                break;
+            case 7:
+                LeakyCache cache = new LeakyCache();
+                cache.initCache();
+                cache.forEachDisplay();
+                break;
+            case 8:
+                break;
         }
     }
 }
