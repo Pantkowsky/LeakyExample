@@ -21,7 +21,12 @@ public class LeakyString {
 
     /**
      * Creates an even worse leak by interning the substring holding
-     * the reference to the {@link #referenceString}
+     * the reference to the {@link #referenceString}. Until the release of
+     * Java 8, interned strings have been kept in PermGen space (special permanent
+     * generation space holding the metadata describing user classes - classes that are
+     * not a part of Java language), however this has been changed in Java 8 - now they
+     * are kept in so called Metaspace, which won't cause the memory leak when interning
+     * strings anymore.
      */
     public void leakEvenMore(){
         interned = substring.intern();
