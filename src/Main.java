@@ -19,6 +19,8 @@ public class Main {
         benchmark(5);
         benchmark(6);
         benchmark(7);
+        benchmark(8);
+        benchmark(9);
 
         //simulating ongoing cycle of the program
         Thread thread = Thread.currentThread();
@@ -84,6 +86,11 @@ public class Main {
                 map.store("Coralie", "Dinosaur Race Driver");
                 System.out.println(map.getKey(new LeakyHashKey("Coralie")));
                 System.out.println(map.getKey(new LeakyHashKey("Adam")));
+                break;
+            case 9:
+                LeakyConnection connection = new LeakyConnection();
+                connection.leak();
+//                connection.fixLeak(); <- closes the connection
                 break;
         }
     }
