@@ -69,6 +69,9 @@ public class Main {
                 thread.getThreadName();
 //                thread.fixLeak(); <-- call to thread.start() to fix the leak
                 break;
+            case 6:
+                AutoboxingLeak leak = new AutoboxingLeak();
+                leak.show();
         }
     }
 }
