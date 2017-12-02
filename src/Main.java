@@ -1,5 +1,3 @@
-import java.awt.*;
-
 /**
  * Example memory leaks demonstration done for the course of
  * Automated Software Analysis held at IT University of Copenhagen.
@@ -76,11 +74,16 @@ public class Main {
                 leak.show();
                 break;
             case 7:
-                LeakyCache cache = new LeakyCache();
-                cache.initCache();
-                cache.forEachDisplay();
+                LeakyHashMap cache = new LeakyHashMap();
+                cache.init();
+                cache.display();
                 break;
             case 8:
+                LeakyHashMap map = new LeakyHashMap();
+                map.store("Adam", "Ghost Buster");
+                map.store("Coralie", "Dinosaur Race Driver");
+                System.out.println(map.getKey(new LeakyHashKey("Coralie")));
+                System.out.println(map.getKey(new LeakyHashKey("Adam")));
                 break;
         }
     }
