@@ -15,17 +15,13 @@ public class LeakyHashMap {
      * displaying wanted information as though objects in cache are not needed anymore,
      * they can’t be GC'ed, as map holds a strong reference to them.
      */
-    private Map<String,String> map= new HashMap<>();
+    private static final Map<String,String> map = new HashMap<>();
 
     public void init() {
         map.put("Coralie", "Works as professional Pokemon Trainer");
         map.put("Adam", "Works as Freelance Chippendale");
         map.put("Big Shaq", "Works as Post-Doc Mathematician");
         System.out.println("The ting goes skraa!");
-    }
-
-    public Map<String,String> getCache() {
-        return map;
     }
 
     public void display(){

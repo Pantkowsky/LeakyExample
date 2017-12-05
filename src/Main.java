@@ -4,6 +4,17 @@
  * Project done by Adam Pantkowski and Coralie Boucheron.
  */
 public class Main {
+    private static final LeakyHashMap map = new LeakyHashMap();
+    private static final LeakyHashMap cache = new LeakyHashMap();
+    private static final AutoboxingLeak leak = new AutoboxingLeak();
+    private static final LeakyString leakyString = new LeakyString();
+    private static final LeakyBufferedReader leakyBufferedReader = new LeakyBufferedReader();
+    private static final DummyButton button = new DummyButton();
+    private static LeakyThread thread;
+    private static  LeakyConnection connection;
+    private static LeakyOuterClass.LeakyInnerClass leakyInnerClass;
+
+//    private static final LeakyOuterClass parentClass = new LeakyOuterClass();
 
     /**
      * Main method to introduce and benchmark various types of memory leaks.
@@ -11,20 +22,28 @@ public class Main {
      * @param args command-line argument
      */
     public static void main(String[] args) {
-        benchmark(0);
-        benchmark(1);
-        benchmark(2);
-        benchmark(3);
-        benchmark(4);
+//        benchmark(0);
+//        benchmark(1);
+//        benchmark(2);
+//        benchmark(3);
+//        benchmark(4);
+//        benchmark(5);
+//        benchmark(6);
+//        benchmark(7);
+//        benchmark(8);
+//        benchmark(9);
+        try{
+            Thread thread = Thread.currentThread();
+            thread.sleep(20000);
+        }catch (InterruptedException ie){
+            ie.printStackTrace();
+        }
         benchmark(5);
-        benchmark(6);
-        benchmark(7);
-        benchmark(8);
-        benchmark(9);
 
         //simulating ongoing cycle of the program
         Thread thread = Thread.currentThread();
         try{
+            System.out.println("starting sleeping thread");
             thread.sleep(1000000);
         }catch (InterruptedException ie){
             ie.printStackTrace();
@@ -39,8 +58,10 @@ public class Main {
     private static void benchmark(int code){
         switch (code){
             case 0:
-                DummyButton button = new DummyButton();
-                button.addMouseListener(new LeakyListener());
+                for (int i = 0; i < 1000; i++) {
+                    System.out.println(i+"");
+                    button.setupLeakingListener();
+                }
                 break;
             case 1:
                 for(int i = 0; i < 100; i++){
@@ -49,48 +70,50 @@ public class Main {
                 }
                 break;
             case 2:
-                for(int i = 0; i < 10; i++){
-                    LeakyString leakyString = new LeakyString();
+                for(int i = 0; i < 100; i++){
                     leakyString.leakEvenMore();
                     System.out.println("Leaking strings ...");
                 }
                 break;
             case 3:
-                LeakyBufferedReader leakyBufferedReader = new LeakyBufferedReader();
+
                 leakyBufferedReader.leak();
                 break;
             case 4:
-                for (int i = 0; i < 10000; i++) {
-                    LeakyOuterClass parentClass = new LeakyOuterClass();
-                    LeakyOuterClass.LeakyInnerClass leakyInnerClass = LeakyOuterClass.LeakyInnerClass.getLeakingInnerClass();
-                    System.out.println(leakyInnerClass.toString());
+                for (int i = 0; i < 1000; i++) {
+                    leakyInnerClass = LeakyOuterClass.LeakyInnerClass.getLeakingInnerClass();
                 }
                 break;
             case 5:
-                LeakyThread thread = new LeakyThread();
-                thread.getThreadName();
+                for (int i = 0; i < 2000; i++) {
+//                    LeakyThread thread = new LeakyThread();
+                    thread = new LeakyThread();
+                    thread.getThreadName();
+                }
 //                thread.fixLeak(); <-- call to thread.start() to fix the leak
                 break;
             case 6:
-                AutoboxingLeak leak = new AutoboxingLeak();
                 leak.show();
                 break;
             case 7:
-                LeakyHashMap cache = new LeakyHashMap();
                 cache.init();
                 cache.display();
                 break;
             case 8:
-                LeakyHashMap map = new LeakyHashMap();
-                map.store("Adam", "Ghost Buster");
-                map.store("Coralie", "Dinosaur Race Driver");
-                System.out.println(map.getKey(new LeakyHashKey("Coralie")));
-                System.out.println(map.getKey(new LeakyHashKey("Adam")));
+                for (int i = 0; i < 10000; i++) {
+                    map.store("Adam".concat(i+""), "Ghost Buster");
+                    map.store("Coralie".concat(i+""), "Dinosaur Race Driver");
+                    System.out.println(map.getKey(new LeakyHashKey("Coralie".concat(i+""))));
+                    System.out.println(map.getKey(new LeakyHashKey("Adam".concat(i+""))));
+                }
                 break;
             case 9:
-                LeakyConnection connection = new LeakyConnection();
-                connection.leak();
-//                connection.fixLeak(); <- closes the connection
+                for (int i = 0; i < 5; i++) {
+                    System.out.println(i+"");
+                    connection = new LeakyConnection();
+                    connection.leak();
+//                    connection.fixLeak(); //<- closes the connection
+                }
                 break;
         }
     }

@@ -19,28 +19,28 @@ public class LeakyObserver {
      * Subscribes to Observable and starts to emit the values
      */
     private void showLeak(){
-        subscription = createLeak().subscribe(System.out::println);
+//        subscription = createLeak().subscribe(System.out::println);
     }
 
     /**
      * Sets up the Observable
      * @return Observable
      */
-    private Observable<String> createLeak(){
-        Integer[] x = new Integer[1000];
-        for(int i = 0; i < x.length; i++){
-            x[i] = i;
-        }
-
-        return Observable.just(x)
-                .flatMap(new Func1<Integer[], Observable<Integer>>() {
-                    @Override
-                    public Observable<Integer> call(Integer[] ints) {
-                        return Observable.from(ints);
-                    }
-                })
-                .map(s -> s.toString().concat(" emitted"));
-    }
+//    private Observable<String> createLeak(){
+//        Integer[] x = new Integer[1000];
+//        for(int i = 0; i < x.length; i++){
+//            x[i] = i;
+//        }
+//
+//        return Observable.just(x)
+//                .flatMap(new Func1<Integer[], Observable<Integer>>() {
+//                    @Override
+//                    public Observable<Integer> call(Integer[] ints) {
+//                        return Observable.from(ints);
+//                    }
+//                })
+//                .map(s -> s.toString().concat(" emitted"));
+//    }
 
     /**
      * Leak can be avoided by calling .unsubscribe() on the {@link Observable}

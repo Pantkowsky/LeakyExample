@@ -5,18 +5,19 @@
  * Leak can be avoided by using primitive values instead.
  */
 public class AutoboxingLeak {
+    private static Long sum;
 
     public AutoboxingLeak(){}
 
     private long addIncremental(long l) {
-        Long sum = 0L;
+        sum = 0L;
         sum = sum + l;
         System.out.println(sum);
         return sum;
     }
 
     public void show(){
-        for(long i = 0; i<1000; i++){
+        for(long i = 0; i<10000000; i++){
             this.addIncremental(i);
         }
     }
