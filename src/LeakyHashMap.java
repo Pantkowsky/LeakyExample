@@ -18,10 +18,12 @@ public class LeakyHashMap {
     private static final Map<String,String> map = new HashMap<>();
 
     public void init() {
-        map.put("Coralie", "Works as professional Pokemon Trainer");
-        map.put("Adam", "Works as Freelance Chippendale");
-        map.put("Big Shaq", "Works as Post-Doc Mathematician");
-        System.out.println("The ting goes skraa!");
+        map.put("Coralie", "IT Consultant");
+        map.put("Adam", "Software Developer");
+    }
+
+    public void clearLeak(){
+        map.clear();
     }
 
     public void display(){
