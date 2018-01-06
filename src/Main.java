@@ -22,16 +22,6 @@ public class Main {
      * @param args command-line argument
      */
     public static void main(String[] args) {
-//        benchmark(0);
-//        benchmark(1);
-//        benchmark(2);
-//        benchmark(3);
-//        benchmark(4);
-//        benchmark(5);
-//        benchmark(6);
-//        benchmark(7);
-//        benchmark(8);
-//        benchmark(9);
         try{
             Thread thread = Thread.currentThread();
             thread.sleep(20000);
